@@ -1,15 +1,10 @@
-// import Header from "../../organisms/header";
-
+import Header from "../../organisms/header";
 import { styled } from "@mui/system";
 
 const Content = styled(`div`)(() => ({
   gridArea: "content",
   height: 800,
   backgroundColor: "purple"
-}));
-
-const Header = styled(`div`)(() => ({
-  gridArea: "header"
 }));
 
 const MainPageContainer = styled(`div`)(({ theme }) => ({
@@ -29,7 +24,7 @@ const MainPageContainer = styled(`div`)(({ theme }) => ({
 function MainPage() {
   return (
     <MainPageContainer>
-      <Header>SOME HEADER</Header>
+      <Header />
       <Content>SOME CONTENT</Content>
     </MainPageContainer>
   );
