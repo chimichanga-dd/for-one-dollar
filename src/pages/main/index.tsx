@@ -1,11 +1,6 @@
 import Header from "../../organisms/header";
 import { styled } from "@mui/system";
-
-const Content = styled(`div`)(() => ({
-  gridArea: "content",
-  height: 800,
-  backgroundColor: "purple"
-}));
+import { Outlet } from "react-router-dom";
 
 const MainPageContainer = styled(`div`)(({ theme }) => ({
   display: "grid",
@@ -14,10 +9,20 @@ const MainPageContainer = styled(`div`)(({ theme }) => ({
   "content"
   `,
   [theme.breakpoints.up("md")]: {
-    "grid-template-columns": "minmax(250px, 1fr) 5fr",
-    "grid-template-areas": `
+    gridTemplateColumns: "minmax(250px, 1fr) 5fr",
+    gridTemplateAreas: `
             "header content"
           `
+  }
+}));
+
+const ContentContainer = styled(`div`)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  flex: 1,
+  minHeight: "calc(100vh - 72px)",
+  [theme.breakpoints.up("md")]: {
+    minHeight: "100vh"
   }
 }));
 
@@ -25,7 +30,9 @@ function MainPage() {
   return (
     <MainPageContainer>
       <Header />
-      <Content>SOME CONTENT</Content>
+      <ContentContainer>
+        <Outlet />
+      </ContentContainer>
     </MainPageContainer>
   );
 }
