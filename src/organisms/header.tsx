@@ -1,4 +1,5 @@
-import { styled, Typography } from "@mui/material";
+import { styled, Link as MuiLink } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import HeaderActionIcons from "../atoms/headerActionIcons";
 import HeaderLogo from "../atoms/headerLogo";
 
@@ -24,6 +25,12 @@ const HeaderRoutes = styled(`div`)(({ theme }) => ({
   }
 }));
 
+const ROUTES = [
+  { label: "All", path: "/" },
+  { label: "Writings", path: "/writings" },
+  { label: "Drawings", path: "/drawings" }
+];
+
 const Header = () => {
   return (
     <HeaderContainer>
@@ -32,14 +39,17 @@ const Header = () => {
         <HeaderActionIcons />
       </HeaderActionsContainer>
       <HeaderRoutes>
-        {["All", "Writings", "Drawings"].map((category) => {
+        {ROUTES.map((route) => {
           return (
-            <Typography
+            <MuiLink
+              component={RouterLink}
+              to={route.path}
               variant="h5"
-              key={category}
+              key={route.label}
+              sx={{ display: "block" }}
             >
-              {category}
-            </Typography>
+              {route.label}
+            </MuiLink>
           );
         })}
       </HeaderRoutes>
